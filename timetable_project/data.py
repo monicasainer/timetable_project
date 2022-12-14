@@ -72,6 +72,14 @@ def df_workers(number_of_workers):
         except ValueError:
             print("That's not a number!")
 
+    def experience_workers():
+        experience= input("How many years of experience this person has? >>")
+        try:
+            experience = int(experience)
+            return experience
+        except ValueError:
+            print("That's not a number!")
+
     def salary_workers():
         salary = input("What's the annual salary of your worker? (In €) >>")
         try:
@@ -142,12 +150,13 @@ def df_workers(number_of_workers):
         for i in range(number_of_workers):
             name = name_workers()
             age = age_workers()
+            experience = experience_workers()
             salary = salary_workers()
             schedule = times_workers()
             gender = gender_workers()
             weekend = weekend_workers()
             holiday = holiday_workers()
-            data[i] = {'name': name,'age': age,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday}
+            data[i] = {'name': name,'age': age,'experience':experience,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday}
         return data
     df = data_workers(number_of_workers)
     df = pd.DataFrame.from_dict(df,orient='index')
