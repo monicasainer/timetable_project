@@ -2,48 +2,6 @@ from datetime import timedelta,date
 import holidays
 import pandas as pd
 
-# Calendar Dataframe
-
-def calendar(year,country='ES',subdiv=None):
-    """
-    returns a dataframe with three columns:
-    dates: with format [YYYY-MM-DD], ascending
-    weekend: with value 1 if it's Saturday or Sunday, otherwise it returns 0.
-    holidays: with value 1 if it's public holidays, otherwise it returns 0.
-    """
-    calendar=pd.DataFrame()
-
-    def daterange(year):
-        calendar = pd.DataFrame()
-        calendar['dates']=pd.date_range(f'{year}-01-01', f'{year}-12-31', freq='D')
-        return calendar
-
-    calendario = daterange(year)
-
-    def weekends(calendar):
-        calendar['weekday']= calendar['dates'].apply(lambda x: x.weekday())
-        weekend = {0:0,1:0,2:0,3:0,4:0,5:1,6:1}
-        calendar['weekend'] = calendar['weekday'].map(weekend)
-        calendar.drop(columns='weekday',inplace=True)
-        return calendar
-
-    calendario = weekends(calendario)
-
-    def public_holidays(calendar):
-        es_cl_holidays = holidays.country_holidays(country,subdiv)
-        calendar['holidays']=calendar['dates'].apply(lambda x: x in es_cl_holidays).map(int)
-        return calendar
-    calendario = public_holidays(calendario)
-
-    def times(calendario):
-        times=['Morning','Evening','Night']
-        for i in times:
-            calendario[i] = pd.Series(0)
-        return calendario
-    calendario = times(calendario)
-    return calendario
-
-
 def number_workers():
     worker= input("how many workers do you have? >>")
     try:
@@ -69,6 +27,14 @@ def df_workers(number_of_workers):
         try:
             age = int(age)
             return age
+        except ValueError:
+            print("That's not a number!")
+
+    def experience_workers():
+        experience= input("How many years of experience this person has? >>")
+        try:
+            experience = int(experience)
+            return experience
         except ValueError:
             print("That's not a number!")
 
@@ -142,12 +108,13 @@ def df_workers(number_of_workers):
         for i in range(number_of_workers):
             name = name_workers()
             age = age_workers()
+            experience = experience_workers()
             salary = salary_workers()
             schedule = times_workers()
             gender = gender_workers()
             weekend = weekend_workers()
             holiday = holiday_workers()
-            data[i] = {'name': name,'age': age,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday}
+            data[i] = {'name': name,'age': age,'experience':experience,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday}
         return data
     df = data_workers(number_of_workers)
     df = pd.DataFrame.from_dict(df,orient='index')
