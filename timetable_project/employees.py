@@ -49,12 +49,9 @@ def df_workers(number_of_workers):
     def times_workers():
         timer =[1,2,3,4,5,6]
         time = input("When does your worker works? >>\n"
-                "1 for Morning\n"
-                "2 for Evening\n"
-                "3 for Night\n"
-                "4 for Morning and Evening\n"
-                "5 for Morning and Night\n"
-                "6 for Evening and Night\n")
+                "1 for Morning and Evening\n"
+                "2 for Night\n"
+                "3 for Everything\n")
         try:
             time = int(time)
             if time in timer:
@@ -78,7 +75,7 @@ def df_workers(number_of_workers):
             print("That's not a number!")
 
     def weekend_workers():
-        weekends ={1:'Yes',2:'No'}
+        weekends ={1:'No',2:'Yes'}
         weekend = input("Does your worker work during weekends? >>\n"
                     "1 for No\n"
                     "2 for Yes\n")
@@ -91,7 +88,7 @@ def df_workers(number_of_workers):
             print("That's not a number!")
 
     def holiday_workers():
-        holidays ={1:'Yes',2:'No'}
+        holidays ={1:'No',2:'Yes'}
         holiday = input("Does your worker work during public holidays? >>\n"
                     "1 for No\n"
                     "2 for Yes\n")
@@ -102,6 +99,17 @@ def df_workers(number_of_workers):
             else: print('Select a correct value')
         except ValueError:
             print("That's not a number!")
+    def percentage_work():
+        percentage = input("What's is the percentage your employee works? >>\n"
+                    "Add it in decimals, for example:\n"
+                    "20% = 0.2\n"
+                    "65% = 0.65\n"
+                    "100% = 1.0\n")
+        try:
+            percentages = float(percentage)
+            return percentages
+        except ValueError:
+            print("That's not a valid number!")
 
     def data_workers(number_of_workers):
         data={}
@@ -114,8 +122,10 @@ def df_workers(number_of_workers):
             gender = gender_workers()
             weekend = weekend_workers()
             holiday = holiday_workers()
-            data[i] = {'name': name,'age': age,'experience':experience,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday}
+            percentage = percentage_work()
+            data[i] = {'name': name,'age': age,'experience':experience,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday,'percentage':percentage}
         return data
+
     df = data_workers(number_of_workers)
     df = pd.DataFrame.from_dict(df,orient='index')
     return df

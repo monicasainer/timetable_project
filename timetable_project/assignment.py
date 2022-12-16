@@ -1,6 +1,57 @@
 
 import random
 
+def nights_assignment(workers_df,calendar_df):
+    def assignment():
+        worker_nights=workers_df[workers_df['schedule']==2]['name']
+        total_hours={}
+        total_days = 0
+        for x in worker_nights:
+            percentage = float(workers_df[workers_df['name']==x]['percentage'])
+            initial_days=round(len(calendar_df['Night'])/len(worker_nights))
+            total_hours[x]=round(initial_days*percentage)
+            total_days +=total_hours[x]
+        diff_days=len(calendar_df['Night'])-total_days
+        while (diff_days >= len(worker_nights)) & (total_days >= len(calendar_df['Night'])) :
+            for i in worker_nights:
+                percentage = float(data[data['name']==i]['percentage'])
+                initial_days=round(diff_days/len(worker_nights))
+                total_hours[i]+=round(initial_days*percentage)
+                total_days += round(initial_days*percentage)
+            diff_days=len(calendar_df['Night'])-total_days
+        quotient,remainder = divmod(diff_days,len(worker_nights))
+        for t in worker_nights:
+            total_hours[t]+=quotient
+            total_days += quotient
+        names = random.sample(list(worker_nights),remainder)
+        for p in names:
+            total_hours[p]+=1
+        return total_hours
+
+    def setting_nights():
+        total_hours =assignment()
+        worker_nights=workers_df[workers_df['schedule']==2]['name']
+        indexes = list(range(len(calendar_df['Night'])))
+        random.shuffle(indexes)
+
+        for i in worker_nights:
+            index = indexes[:total_hours[i]]
+            indexes = indexes[total_hours[i]:]
+            for x in index:
+                calendar_df['Night'].iloc[x]= i
+        return calendar_df
+    calendar_df = setting_nights()
+    return calendar_df
+
+
+
+
+
+
+
+
+
+
 def holiday_assignment(workers_df,calendar_df):
     def split(a, n):
         k, m = divmod(len(a), n)
