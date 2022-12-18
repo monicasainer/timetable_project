@@ -3,10 +3,6 @@ import holidays
 import pandas as pd
 
 def number_workers():
-    """
-    returns an integer with the number of employees
-    """
-
     worker= input("how many workers do you have? >>")
     try:
         worker = int(worker)
@@ -17,18 +13,7 @@ def number_workers():
 # Employees Dataframe
 
 def df_workers(number_of_workers):
-    """
-    returns a dataframe with the following columns:
-    ['name']: Of each employee.
-    ['age']
-    ['experience']
-    ['salary']
-    ['schedule']: 1 for Morning and Evening - 2 for Night.
-    ['gender']:Female - Male - Non-binary.
-    ['weekend']: 1 for Saturday, Sunday - 0 for weekdays.
-    ['holiday']: 1 if public holiday - 0 otherwise.
-    ['percentage']: Between 0 and 1. 100% workers = 1, part-time < 1
-    """
+
     def name_workers():
         name = input('How is your worker called >>')
         if name.strip().isdigit():
@@ -62,10 +47,11 @@ def df_workers(number_of_workers):
             print("That's not a number!")
 
     def times_workers():
-        timer =[1,2]
+        timer =[1,2,3,4,5,6]
         time = input("When does your worker works? >>\n"
                 "1 for Morning and Evening\n"
-                "2 for Night\n")
+                "2 for Night\n"
+                "3 for Everything\n")
         try:
             time = int(time)
             if time in timer:
@@ -125,20 +111,6 @@ def df_workers(number_of_workers):
         except ValueError:
             print("That's not a valid number!")
 
-    def month_vacation():
-        vacations = {}
-        months=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        for t in range(12):
-            vacations[t+1]=months[t]
-        vacation=input("Which month of the year (in number) your employee has vacation? >>\n")
-        try:
-            vacation= int(vacation)
-            if vacation in vacations.keys():
-                return vacations[vacation]
-            else: print("That's not a valid number!")
-        except ValueError:
-            print("That's not a valid number!")
-
     def data_workers(number_of_workers):
         data={}
         for i in range(number_of_workers):
@@ -151,15 +123,9 @@ def df_workers(number_of_workers):
             weekend = weekend_workers()
             holiday = holiday_workers()
             percentage = percentage_work()
-            vacation = month_vacation()
-            data[i] = {'name': name,'age': age,'experience':experience,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday,'percentage':percentage,'vacation':vacation}
+            data[i] = {'name': name,'age': age,'experience':experience,'salary':salary,'schedule':schedule,'gender':gender,'weekend':weekend,'holiday':holiday,'percentage':percentage}
         return data
 
     df = data_workers(number_of_workers)
     df = pd.DataFrame.from_dict(df,orient='index')
     return df
-
-
-def load_employees(csv_file_path):
-    data=pd.read_csv(csv_file_path,delimiter=';',header=0,index_col=False)
-    return data
