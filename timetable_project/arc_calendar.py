@@ -6,10 +6,10 @@ import pandas as pd
 
 def calendar(year,country='ES',subdiv=None):
     """
-    Returns a dictionary. Each month is a key and the values are Dataframes with
-    the following columns:
-    ['Dates', 'Weekend', 'Holidays', 'Morning_1', 'Morning_2', 'Morning_3',
-       'Evening_1', 'Evening_2', 'Night_1', 'Night_2', 'Month', 'Week Number']
+    returns a dataframe with three columns:
+    dates: with format [YYYY-MM-DD], ascending
+    weekend: with value 1 if it's Saturday or Sunday, otherwise it returns 0.
+    holidays: with value 1 if it's public holidays, otherwise it returns 0.
     """
     calendar=pd.DataFrame()
 
@@ -36,19 +36,19 @@ def calendar(year,country='ES',subdiv=None):
     calendario = public_holidays(calendario)
 
     def times(calendario):
-        times=['Evening','Night']
-        for i in range(1,4):  #3 people working during Morning
-            calendario[f'Morning_{i}']=pd.Series(0)
-        for t in times:
-            for n in range(1,3): #2 people working during Evening and Night.
-                calendario[f'{t}_{n}'] = pd.Series(0)
+        times=['Morning','Evening','Night']
+        for i in times:
+            calendario[i] = pd.Series(0)
         return calendario
     calendario = times(calendario)
     calendario['Month'] = calendario['Dates'].apply(lambda x: x.strftime('%b'))
     calendario['Week Number'] = calendario['Dates'].dt.isocalendar().week
-    month = calendario['Month'].unique()
-    calendarios={}
-    for i in month:
-        calendarios[i]= calendario[calendario['Month']==i]
-    calendarios['All']= calendario   # It will be needed to assign nights.
-    return calendarios
+    return calendario
+
+def accounting(workers_df,calendar_df):
+    workers=list(workers_df['name'])
+    for i in workers:
+        calendar_df[f'{i} T.C.']=0
+        calendar_df[f'{i} W.C.']=0
+        calendar_df[f'{i} M.C.']=0
+    return calendar_df
