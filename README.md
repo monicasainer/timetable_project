@@ -27,9 +27,17 @@ For many years, the HR (human resource) coordinator has been in charge of distri
 >   - Option 2: The user will introduce the data manually. The first question they will need to reply is how many employees the company has. Once this value is selected, questions to query the points of information of option 1, will be repeated as many times as workers.
 >
 > - Constraints:
->   - Full-time employees have one specific month (30 days) of holidays per year.
+>   - Full-time employees have one specific month (30 days) of holidays per year. During that period external people will be hired to replace them.
+>   - Saturday and Sunday are considered weekend.
 >   - Night employees work 5 days one week, and 2 day next week, except in their vacation month.
 >   - Night workers do not differenciate between public holidays, weekends and weekdays.
+>   - Full-time employees (not night) work the same number of public holidays and the same number of weekends. So the distribution must be equitable.
+>   - Full-time non-night employees can work indistinctly in the mornings or in the evenings. But they cannot do both the same day.
+>   - Non-night workers can work a maximum of 5 days in a row.
+
+
+## ⏰ **When**
+
 
 
 
