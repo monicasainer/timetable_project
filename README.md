@@ -8,7 +8,7 @@ This data product is aimed to return a personnalized annual timeframe and an ana
 > ➡️Input: 
 > - Calendar: Year, country and region (optional).
 > - HR information: The following data of employees ➡️ `name`	,`age` ,`experience` , `salary` , `schedule` , `gender` , `weekend` , `month of holidays` , `work percentage` , and `vacation`.
-
+>
 > ⬅️Output:
 > - Calendar: Timetable where one row will correspond one day. Three columns will have assigned the employees who work during the morning of that day, two columns will contain the name of employees who work during the evening, and other two columns will gather the night workers names.
 
@@ -20,7 +20,7 @@ For many years, the HR (human resource) coordinator has been in charge of distri
 
 ## 🤓 **How**
 
-> Input: 
+> ➡️Input: 
 > - Calendar: Year, country and region (optional).
 > - HR information: There are two options:
 >   - Option 1: The user will provide a .csv file containing the following data of employees: `name`	,`age` ,`experience` , `salary` , `schedule` , `gender` , `weekend` , `month of holidays` , `work percentage` , and `vacation`.
@@ -34,7 +34,13 @@ For many years, the HR (human resource) coordinator has been in charge of distri
 >   - Full-time employees (not night) work the same number of public holidays and the same number of weekends. So the distribution must be equitable.
 >   - Full-time non-night employees can work indistinctly in the mornings or in the evenings. But they cannot do both the same day.
 >   - Non-night workers can work a maximum of 5 days in a row.
-
+>
+>
+> ⬅️ Output: 
+> - Calendar: Monthly Timetable with seven columns. Three of them will have assigned the employees who work during the morning of that day, two columns will contain the name of employees who work during the evening, and other two columns will gather the night workers names.
+> - HR insights:
+>   - Table with summary statistics per worker: `number of worked days`, `number of worked mornings`, `number of worked evenings`, `number of worked weekend`, `number of worked public holidays`.
+>   - Data Visualization: Interactive graphs in order to get insights into the time distribution based on employees profile.
 
 ## ⏰ **When**
 
