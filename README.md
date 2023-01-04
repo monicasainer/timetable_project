@@ -5,12 +5,12 @@
 
 This data product is aimed to return a personnalized annual timeframe and an analysis of the time distribution based on workers profile.
 
-> ➡️Input: 
-> - Calendar: Year, country and region (optional).
-> - HR information: The following data of employees ➡️ `name`	,`age` ,`experience` , `salary` , `schedule` , `gender` , `weekend` , `month of holidays` , `work percentage` , and `vacation`.
+> ➡️**Input**: 
+> - **Calendar**: Year, country and region (optional).
+> - **HR information**: The following data of employees ➡️ `name`	,`age` ,`experience` , `salary` , `schedule` , `gender` , `weekend` , `month of holidays` , `work percentage` , and `vacation`.
 >
-> ⬅️Output:
-> - Calendar: Timetable where one row will correspond one day. Three columns will have assigned the employees who work during the morning of that day, two columns will contain the name of employees who work during the evening, and other two columns will gather the night workers names.
+> ⬅️**Output**:
+> - **Calendar**: Timetable where one row will correspond one day. Three columns will have assigned the employees who work during the morning of that day, two columns will contain the name of employees who work during the evening, and other two columns will gather the night workers names.
 
 
 ## ⁇ **Why**
@@ -20,13 +20,13 @@ For many years, the HR (human resource) coordinator has been in charge of distri
 
 ## 🤓 **How**
 
-> ➡️Input: 
-> - Calendar: Year, country and region (optional).
-> - HR information: There are two options:
+> ➡️**Input**: 
+> - **Calendar**: Year, country and region (optional).
+> - **HR information**: There are two options:
 >   - Option 1: The user will provide a .csv file containing the following data of employees: `name`	,`age` ,`experience` , `salary` , `schedule` , `gender` , `weekend` , `month of holidays` , `work percentage` , and `vacation`.
 >   - Option 2: The user will introduce the data manually. The first question they will need to reply is how many employees the company has. Once this value is selected, questions to query the points of information of option 1, will be repeated as many times as workers.
 >
-> - Constraints:
+> - **Constraints**:
 >   - Full-time employees have one specific month (30 days) of holidays per year. During that period external people will be hired to replace them.
 >   - Saturday and Sunday are considered weekend.
 >   - Night employees work 5 days one week, and 2 day next week, except in their vacation month.
@@ -36,15 +36,15 @@ For many years, the HR (human resource) coordinator has been in charge of distri
 >   - Non-night workers can work a maximum of 5 days in a row.
 >
 >
-> ⬅️ Output: 
-> - Calendar: Monthly Timetable with seven columns. Three of them will have assigned the employees who work during the morning of that day, two columns will contain the name of employees who work during the evening, and other two columns will gather the night workers names.
-> - HR insights:
+> ⬅️ **Output**: 
+> - **Calendar**: Monthly Timetable with seven columns. Three of them will have assigned the employees who work during the morning of that day, two columns will contain the name of employees who work during the evening, and other two columns will gather the night workers names.
+> - **HR insights**:
 >   - Table with summary statistics per worker: `number of worked days`, `number of worked mornings`, `number of worked evenings`, `number of worked weekend`, `number of worked public holidays`.
 >   - Data Visualization: Interactive graphs in order to get insights into the time distribution based on employees profile.
 
 ## ⏰ **When**
 
-
+<img width="1377" alt="image" src="https://user-images.githubusercontent.com/45935749/210576082-39fdff9f-157e-4393-8ad6-868f19b6e7f3.png">
 
 
 
